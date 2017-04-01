@@ -53,4 +53,4 @@ def arg(n, default=None):
     """
     return sys.argv[n] if len(sys.argv) > n else default
 
-printAt(int(arg(1, default=0)), int(arg(2, default=0)))
+printAt(int(arg(1, default=500)), int(arg(2, default=500)))
