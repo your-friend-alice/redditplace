@@ -32,7 +32,7 @@ def colorChar(top, bott, optimize=True):
     global prevColor
     if(top==None or bott==None):
         out='\033[0m'
-        if top==bott==None:
+        if top==None or bott==None:
             out+=" " if prevColor[0]!=None or prevColor[1]!=None else " "
             prevColor=(top,bott)
             return out
