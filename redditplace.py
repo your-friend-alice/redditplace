@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-import sys,os,urllib.request,time,threading,tty,termios,queue
+import sys,os,urllib.request,time
+#try importing stuff needed for interactive use
+interactive=True
+try:
+    import threading,tty,termios,queue
+except:
+    interactive=False
 colors=[str(i) for i in [
     231, 253, 245, 16,
     213, 196, 202, 130,
@@ -94,6 +100,9 @@ def getStartingCenter():
     return [clamp(int(arg(i, default=500)), 0, 999) for i in (1,2)]
 
 if "explore" in sys.argv[1:]:
+    if not interactive:
+        print("Sorry, explore mode is not supported on your platform.")
+        sys.exit(1)
     sys.argv.pop(sys.argv.index("explore"))
     center=getStartingCenter()
     print("loading...")
