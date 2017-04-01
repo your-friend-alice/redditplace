@@ -10,3 +10,5 @@ terminal that supports 256 colors and unicode.
 `./redditplace.py` will center on the middle of the canvas. Put your x and y
 coordinates in as parameters (for example `./redditplace.py 193 585`) to
 specify an alternate center.
+
+![preview](https://github.com/dn3s/redditplace/blob/master/preview.png)
