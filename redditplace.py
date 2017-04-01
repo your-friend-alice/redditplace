@@ -6,6 +6,7 @@ colors=[str(i) for i in [
     214, 112, 22,  51,
     33,  19,  170, 53
     ]]
+
 data=None
 def update():
     global data
@@ -89,8 +90,12 @@ def hJump():
 def vJump():
     return int(os.get_terminal_size()[1]/4)
 
-if arg(1) == "explore":
-    center=[500,500]
+def getStartingCenter():
+    return [clamp(int(arg(i, default=500)), 0, 999) for i in (1,2)]
+
+if "explore" in sys.argv[1:]:
+    sys.argv.pop(sys.argv.index("explore"))
+    center=getStartingCenter()
     print("loading...")
     update()
     q=queue.Queue()
@@ -119,7 +124,4 @@ if arg(1) == "explore":
         center=[clamp(n,0,999) for n in center]
 else:
     update()
-    printAt(
-            clamp(int(arg(1, default=500)), 0, 999),
-            clamp(int(arg(2, default=500)), 0, 999)
-            )
+    printAt(*getStartingCenter())
