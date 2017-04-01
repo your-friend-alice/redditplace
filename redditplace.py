@@ -14,6 +14,8 @@ def valueAt(x, y):
     """
     Get the color value at a given coordinate on the Place canvas
     """
+    if(x<0 or x>999 or y<0 or y>999):
+        return 3
     byte=data[y*500+int((x)/2)+4]
     if x%2 == 0:
         return byte >> 4
