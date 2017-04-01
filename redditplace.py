@@ -68,13 +68,13 @@ def printAt(x, y, w=None, h=None, overwrite=False):
     below
     """
     w=w or os.get_terminal_size()[0]
-    h=h or os.get_terminal_size()[1]-1
+    h=h or os.get_terminal_size()[1]
     startX=int(x-w/2)
     startY=int((y-h))
     rows=[]
     for y in range(startY,startY+h*2,2):
         rows.append("".join(colorChar(valueAt(x,y), valueAt(x,y-1)) for x in range(startX,startX+w)))
-    print("\033[0;0H" + "\n".join(rows) + "\033[0m")
+    print(("\033[0;0H" if overwrite else "") + "\n".join(rows) + "\033[0m", end="")
 
 def arg(n, default=None):
     """
@@ -110,6 +110,7 @@ if "explore" in sys.argv[1:]:
     q=queue.Queue()
     threading.Thread(target=keyListen, kwargs={"q":q}, daemon=True).start()
     threading.Thread(target=updatePeriodically, kwargs={"q":q}, daemon=True).start()
+    tty.setcbreak(sys.stdin.fileno())
     old=termios.tcgetattr(sys.stdin.fileno())
     while True:
         termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old)
@@ -133,4 +134,4 @@ if "explore" in sys.argv[1:]:
         center=[clamp(n,0,999) for n in center]
 else:
     update()
-    printAt(*getStartingCenter())
+    printAt(*getStartingCenter(), h=os.get_terminal_size()[1]-1)
