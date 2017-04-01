@@ -66,7 +66,7 @@ def printAt(x, y, w=None, h=None):
     startY=int((y-h))
     rows=[]
     for y in range(startY,startY+h*2,2):
-        rows.append("".join(colorChar(valueAt(x,y), valueAt(x,y+1)) for x in range(startX,startX+w)))
+        rows.append("".join(colorChar(valueAt(x,y), valueAt(x,y-1)) for x in range(startX,startX+w)))
     print("\n".join(rows) + "\033[0m")
 
 def arg(n, default=None):
