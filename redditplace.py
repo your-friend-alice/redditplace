@@ -124,11 +124,11 @@ if "explore" in sys.argv[1:]:
             sys.exit(1)
         elif k in 'ha':
             center[0]-=hJump()
-        elif k in 'ld':
+        elif k in 'ldes':
             center[0]+=hJump()
-        elif k in 'js':
+        elif k in 'jsot':
             center[1]+=vJump()
-        elif k in 'kw':
+        elif k in 'kwn,':
             center[1]-=vJump()
         center=[clamp(n,0,999) for n in center]
 else:
