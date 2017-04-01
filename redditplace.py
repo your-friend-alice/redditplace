@@ -21,7 +21,7 @@ def update():
             ).read()
     data=d
 
-def updatePeriodically(delay=1, q=None):
+def updatePeriodically(delay=5, q=None):
     while True:
         time.sleep(delay) #TODO make this an interval instead of a delay
         update()
