@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import sys,os,urllib.request
 colors=[str(i) for i in [
     231, 253, 245, 16,
