@@ -65,4 +65,10 @@ def arg(n, default=None):
     """
     return sys.argv[n] if len(sys.argv) > n else default
 
-printAt(int(arg(1, default=500)), int(arg(2, default=500)))
+def clamp(val, minimum, maximum):
+    return min(max(val, minimum), maximum)
+
+printAt(
+        clamp(int(arg(1, default=500)), 0, 999),
+        clamp(int(arg(2, default=500)), 0, 999)
+        )
